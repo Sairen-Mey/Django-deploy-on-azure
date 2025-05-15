@@ -15,7 +15,7 @@ def login_view(request):
             user = form.user
             login(request, user)
             messages.success(request, 'login is cool')
-            return redirect('user:profile')
+            return redirect('user:profile', username=user.username)
         else:
             messages.error(request, 'date is wrong')
     else:
@@ -29,7 +29,7 @@ def registration(request):
             user = form.save()
             login(request, user)
             messages.success(request, 'Account create')
-            return redirect('user:profile')
+            return redirect('user:profile', username=user.username)
         else:
             messages.error(request, 'Edit your request on the form')
     else:
