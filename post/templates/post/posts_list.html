@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts list</title>
+</head>
+<body>
+{% for post in posts %}
+<h2>{{ post.author }}</h2>
+{% for img in post.images.all %}
+<img src="{{ img.image.url }}">
+{%endfor%}
+<p>{{ post.content }}</p>
+{%endfor%}
+</body>
+</html>

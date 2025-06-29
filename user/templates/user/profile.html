@@ -14,8 +14,11 @@
 {% else %}
 <img src="{% static 'avatars/baseavatar.png' %}" alt="avatar" width="150" height="150">
 {% endif %}
-
 <h2>{{ profile.user.username }}</h2>
 <p>{{ profile.bio }}</p>
+{% if request.user == profile.user%}
+<a href=" {% url 'user:edit_profile'%} ">Edit profile</a>
+<a href=" {% url 'post:create_post'%} ">Create post</a>
+{% endif %}
 </body>
 </html>

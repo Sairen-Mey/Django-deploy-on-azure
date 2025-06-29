@@ -13,14 +13,14 @@ def profile_view(request, username):
 
 @login_required
 def edit_profile_view(request):
-    profile = get_object_or_404(Profile, request.user)
+    profile = get_object_or_404(Profile, user=request.user)
 
     if request.method == "POST":
-        form = EditProfileForm(request.POST, request.FILES, instance=profile)
+        form = EditProfileForm(request.POST, request.FILES, instance=profile, user=request.user)
         if form.is_valid():
             form.save()
 
-            return redirect("user:profile", username=request.user.username)
+            return redirect("user:profile", username=form.cleaned_data['username'])
     else:
-        form = EditProfileForm(instance=profile)
+        form = EditProfileForm(instance=profile, user=request.user)
     return render(request, 'user/edit_profile.html', {"form":form})
