@@ -20,5 +20,16 @@
 <a href=" {% url 'user:edit_profile'%} ">Edit profile</a>
 <a href=" {% url 'post:create_post'%} ">Create post</a>
 {% endif %}
+
+{% for post in profile.user.posts.all %}
+<h2>{{ post.author }}</h2>
+{% if request.user == post.author %}
+<a href=" {% url 'post:post_delete' %}">Delete post</a>
+{% endif %}
+{% for img in post.images.all %}
+<img src="{{ img.image.url }}">
+{%endfor%}
+<p>{{ post.content }}</p>
+{%endfor%}
 </body>
 </html>

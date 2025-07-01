@@ -1,35 +1,43 @@
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
-from django.utils.translation import gettext_lazy as _
+from .utils import validate_required_fields
 
 
 class CustomUserManager(BaseUserManager):
     """
-    Custom user model manager where email is the unique identifiers
-    for authentication instead of usernames.
+    Custom user manager that requires email, username, and full name.
     """
-    def create_user(self, fullname, username, email, password=None, **extra_fields):
+
+    def create_user(self, username: str, full_name: str, password: str | None = None, **extra_fields):
         """
-        Create and save a user with the given email and password.
+        Create and return a regular user.
+        Expects either email or phone_number in extra_fields.
         """
-        if not email:
-            raise ValueError(_("The Email must be set"))
-        email = self.normalize_email(email)
-        user = self.model(email=email, fullname=fullname, username=username, **extra_fields)
+        validate_required_fields(username=username, full_name=full_name)
+
+        email = extra_fields.get('email')
+        phone = extra_fields.get('phone_number')
+
+        if not email and not phone:
+            raise ValueError("You must provide at least an email or phone number.")
+
+        if email:
+            extra_fields['email'] = self.normalize_email(email)
+
+        user = self.model(
+            username=username,
+            full_name=full_name,
+            **extra_fields
+        )
         user.set_password(password)
         user.save()
         return user
 
-    def create_superuser(self, fullname, username, email, password=None, **extra_fields):
+    def create_superuser(self, username: str, full_name: str, email:str, password: str | None = None, **extra_fields):
         """
-        Create and save a SuperUser with the given email and password.
+        Create and return a superuser.
         """
-        extra_fields.setdefault("is_staff", True)
-        extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
 
-        if extra_fields.get("is_staff") is not True:
-            raise ValueError(_("Superuser must have is_staff=True."))
-        if extra_fields.get("is_superuser") is not True:
-            raise ValueError(_("Superuser must have is_superuser=True."))
-        return self.create_user(fullname, username, email, password, **extra_fields)
+        return self.create_user(username, full_name, password, email=email, **extra_fields)
+

@@ -17,7 +17,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
     USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = ["email", "phone"]
+    REQUIRED_FIELDS = ["full_name"]
 
     groups = models.ManyToManyField(
         'auth.Group',

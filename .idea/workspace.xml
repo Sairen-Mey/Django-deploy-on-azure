@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8480b05-0a02-4727-a253-c2d974cce1a4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/accounts/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/managers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/user/edit_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user/edit_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/post/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/post/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post/templates/post/successful_deletion.html" beforeDir="false" afterPath="$PROJECT_DIR$/post/templates/post/successful_deletion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/post/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/post/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/post/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/templates/user/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
