@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'follow.apps.FollowConfig',
     'accounts.apps.AccountsConfig',
     'user.apps.UserConfig',
     'post.apps.PostConfig',

@@ -25,5 +25,5 @@ urlpatterns = [
     path('profile/', include('user.urls')),
     path('posts/', include('post.urls')),
 
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

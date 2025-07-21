@@ -40,4 +40,3 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
 
         return self.create_user(username, full_name, password, email=email, **extra_fields)
-

@@ -16,10 +16,13 @@ def create_post(request):
             post = form.save(commit=False)  # Don't save yet, need to add author
             post.author = request.user
             post.save()
-            images = form.files.getlist("images")
+            images = form.cleaned_data["images"]
+            if not images:
+                print("Error")
             for img in images:
-                Image.objects.create(post=post, image=img)
-            return redirect('post:post_list')  # Redirect to a list of posts
+                i = Image.objects.create(post=post, image=img)
+                print(i.image.url)
+            return redirect('user:profile', username=post.author.username)  # Redirect to a list of posts
     else:
         form = PostForm()
     return render(request, 'post/create_post.html', {'form': form})
@@ -33,7 +36,7 @@ def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == 'POST':
         post.delete()
-        return redirect('post:post_list')
+        return redirect('user:profile', username=post.author.username)
     return render(request, 'post/successful_deletion.html', {'post': post})
 
 

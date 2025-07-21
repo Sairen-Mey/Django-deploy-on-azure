@@ -7,7 +7,7 @@ from .managers import CustomUserManager
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=200, unique=True, blank=False)
     full_name = models.CharField(max_length=200, blank=False)
-    email = models.EmailField(null=True)
+    email = models.EmailField(null=True, unique=True, blank=True)
     phone_number = models.CharField(max_length=100, blank=False)
 
     is_active = models.BooleanField(default=True)

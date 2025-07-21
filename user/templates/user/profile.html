@@ -1,4 +1,6 @@
+
 <!doctype html>
+
 {% load static %}
 <html lang="en">
 <head>
@@ -6,11 +8,15 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Profile</title>
+    <link rel="stylesheet"
+    href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
 </head>
+<!--width="150" height="150"-->
 <body>
 {% if profile.avatar %}
-<img src="{{ profile.avatar.url }}" alt="avatar" width="150" height="150">
+<img src="{{ profile.avatar.url }}" alt="avatar" class="avatar">
 {% else %}
 <img src="{% static 'avatars/baseavatar.png' %}" alt="avatar" width="150" height="150">
 {% endif %}
@@ -22,14 +28,42 @@
 {% endif %}
 
 {% for post in profile.user.posts.all %}
-<h2>{{ post.author }}</h2>
-{% if request.user == post.author %}
-<a href=" {% url 'post:post_delete' %}">Delete post</a>
-{% endif %}
-{% for img in post.images.all %}
-<img src="{{ img.image.url }}">
-{%endfor%}
-<p>{{ post.content }}</p>
-{%endfor%}
+  <div class="post-block">
+    <div class="post-content">
+      <p>{{ post.content }}</p>
+      {% if request.user == post.author %}
+        <a href="{% url 'post:post_delete' pk=post.pk %}">Delete post</a>
+      {% endif %}
+    </div>
+
+    <div class="post-carousel swiper">
+      <div class="swiper-wrapper">
+        {% for img in post.images.all %}
+          <div class="swiper-slide">
+            <img src="{{ img.image.url }}" alt="Image for post {{ post.id }}">
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if post.images.count > 1 %}
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  document.querySelectorAll('.swiper').forEach((el) => {
+    new Swiper(el, {
+      loop: true,
+      navigation: {
+        nextEl: el.querySelector('.swiper-button-next'),
+        prevEl: el.querySelector('.swiper-button-prev'),
+      },
+    });
+  });
+</script>
 </body>
 </html>
