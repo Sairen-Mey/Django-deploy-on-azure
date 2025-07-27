@@ -35,20 +35,16 @@
         <a href="{% url 'post:post_delete' pk=post.pk %}">Delete post</a>
       {% endif %}
     </div>
-
-    <div class="post-carousel swiper">
-      <div class="swiper-wrapper">
-        {% for img in post.images.all %}
-          <div class="swiper-slide">
-            <img src="{{ img.image.url }}" alt="Image for post {{ post.id }}">
-          </div>
-        {% endfor %}
-      </div>
-
-      {% if post.images.count > 1 %}
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-      {% endif %}
+      <div>
+          {% with post.images.first as img %}
+            {% if img %}
+              <img
+                src="{% url 'posts:thumbnail' post_pk=post.pk image_pk=img.pk %}"
+                alt="Preview"
+                style="width:150px; height:150px; object-fit:cover;"
+              >
+            {% endif %}
+          {% endwith %}
     </div>
   </div>
 {% endfor %}

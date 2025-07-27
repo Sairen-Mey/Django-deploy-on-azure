@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
 from .utils import post_image_upload_path
+from PIL import Image
+from io import BytesIO
+from django.core.files.base import ContentFile
 # Create your models here.
 
 class Post(models.Model):
@@ -23,14 +26,6 @@ class Like(models.Model):
 
 
 
-
-class Image(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="images")
-    image = models.ImageField(upload_to=post_image_upload_path)
-
-    def __str__(self):
-        return f'image for post {self.post.id}'
-
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
 
@@ -43,3 +38,12 @@ class PostTag(models.Model):
 
     def __str__(self):
         return f'Post by {self.author.username}'
+
+
+
+class PostImage(models.Model):
+    post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='post_images')
+    image = models.ImageField(upload_to='post_images/')
+
+
+
