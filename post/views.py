@@ -60,4 +60,6 @@ def thumbnail_view(request, post_pk, image_pk):
     return HttpResponse(buf.getvalue(), content_type='image/jpeg')
 
 def post_edit(request):
-    pass
+    print("Hello")
+
+
