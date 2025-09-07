@@ -135,3 +135,4 @@ USERNAME_FIELD = 'email'
 AUTHENTICATION_BACKENDS = [
     'accounts.backends.EmailBackend'
 ]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
